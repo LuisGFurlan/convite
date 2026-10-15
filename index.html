@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Um convite pra você</title>
+<meta name="description" content="Tenho uma pergunta pra te fazer...">
+<meta name="theme-color" content="#3b0a1a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="cortina esq"></div>
+<div class="cortina dir"></div>
+<div class="bambinela"></div>
+<div class="flutuantes" id="flutuantes"></div>
+<canvas id="confete"></canvas>
+
+<!-- dragãozinho original, reaproveitado nas duas telas -->
+<template id="tpl-dragao">
+  <svg class="dragao" viewBox="0 0 120 120" aria-hidden="true">
+    <path d="M86 92 Q108 96 110 78 Q112 70 104 72 Q106 84 88 84 Z" fill="#6ee7b7" stroke="#059669" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M36 66 Q14 50 12 66 Q20 64 22 74 Q30 68 38 76 Z" fill="#fcd34d" stroke="#d97706" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M84 66 Q106 50 108 66 Q100 64 98 74 Q90 68 82 76 Z" fill="#fcd34d" stroke="#d97706" stroke-width="2.5" stroke-linejoin="round"/>
+    <ellipse cx="60" cy="84" rx="28" ry="25" fill="#6ee7b7" stroke="#059669" stroke-width="2.5"/>
+    <ellipse cx="60" cy="90" rx="16" ry="15" fill="#d1fae5"/>
+    <path d="M44 24 L40 8 L52 20 Z" fill="#fcd34d" stroke="#d97706" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M76 24 L80 8 L68 20 Z" fill="#fcd34d" stroke="#d97706" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="60" cy="44" r="26" fill="#6ee7b7" stroke="#059669" stroke-width="2.5"/>
+    <path d="M54 19 L60 12 L66 19" fill="#fcd34d" stroke="#d97706" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="50" cy="42" r="5.5" fill="#1f2937"/>
+    <circle cx="70" cy="42" r="5.5" fill="#1f2937"/>
+    <circle cx="52" cy="40" r="2" fill="#fff"/>
+    <circle cx="72" cy="40" r="2" fill="#fff"/>
+    <ellipse cx="43" cy="52" rx="5" ry="3" fill="#fca5a5" opacity=".6"/>
+    <ellipse cx="77" cy="52" rx="5" ry="3" fill="#fca5a5" opacity=".6"/>
+    <path d="M54 54 Q60 60 66 54" fill="none" stroke="#1f2937" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="56" cy="49" r="1.2" fill="#059669"/>
+    <circle cx="64" cy="49" r="1.2" fill="#059669"/>
+    <circle cx="50" cy="78" r="6" fill="#fff8e1" stroke="#e5c07b" stroke-width="1.5"/>
+    <circle cx="60" cy="74" r="7" fill="#fff8e1" stroke="#e5c07b" stroke-width="1.5"/>
+    <circle cx="70" cy="78" r="6" fill="#fff8e1" stroke="#e5c07b" stroke-width="1.5"/>
+    <circle cx="55" cy="81" r="5" fill="#fff8e1" stroke="#e5c07b" stroke-width="1.5"/>
+    <circle cx="65" cy="81" r="5" fill="#fff8e1" stroke="#e5c07b" stroke-width="1.5"/>
+    <path d="M44 82 L76 82 L71 108 L49 108 Z" fill="#fff" stroke="#b91c1c" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M52 82 L54 108 M60 82 L60 108 M68 82 L66 108" stroke="#ef4444" stroke-width="4"/>
+    <ellipse cx="44" cy="92" rx="5" ry="4" fill="#6ee7b7" stroke="#059669" stroke-width="2"/>
+    <ellipse cx="76" cy="92" rx="5" ry="4" fill="#6ee7b7" stroke="#059669" stroke-width="2"/>
+  </svg>
+</template>
+
+<!-- convite -->
+<main class="ingresso" id="convite">
+  <div class="parte principal">
+    <div class="letreiro">🎟️ Sessão especial</div>
+    <h1><span class="nome" data-nome></span>quer sair comigo?</h1>
+
+    <section class="dados">
+      <div class="dado"><span class="ic">🛍️</span><div><small>Motivo</small><p>Quero conhecer o Shopping Estação, porque você me deixou curioso.</p></div></div>
+      <div class="dado"><span class="ic">🍿</span><div><small>Objetivo</small><p>Ver o cinema de lá e assistir o novo filme dos Carros 🏎️</p></div></div>
+      <div class="dado"><span class="ic">📅</span><div><small>Data</small><p>Quando ficar melhor pra você.</p></div></div>
+    </section>
+  </div>
+
+  <div class="parte canhoto">
+    <p class="pergunta">E aí, topa?</p>
+    <div class="botoes">
+      <button id="sim" type="button">Sim 🍿</button>
+      <button id="nao" type="button">Não</button>
+    </div>
+    <div class="codigo"></div>
+    <div class="serie">Nº 0001 · ADMITE 2</div>
+  </div>
+</main>
+
+<!-- sucesso -->
+<main class="ingresso" id="sucesso">
+  <div class="parte principal">
+    <div class="carimbo">CONFIRMADO</div>
+    <h1>Ebaaa! 🎉</h1>
+    <p>Sabia que você ia topar, <span data-nome></span> 😄<br>Agora é só escolher o dia!</p>
+  </div>
+  <div class="parte canhoto">
+    <a class="zap" id="zap" target="_blank" rel="noopener">Me manda no WhatsApp 💬</a>
+    <div class="codigo"></div>
+    <div class="serie">Nº 0001 · ADMITE 2</div>
+  </div>
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/confete.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

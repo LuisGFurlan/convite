@@ -1,0 +1,9 @@
+# notas internas (não publicar)
+PROMPT_CLAUDE_CODE.md
+
+# sistema / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+node_modules/
