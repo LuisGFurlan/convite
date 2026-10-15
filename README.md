@@ -1,6 +1,6 @@
-# Convite pro cinema 🍿🐉
+# Convite pro jantar 🍔🐉
 
-Página estática com um convite em formato de ingresso de cinema. Tem um botão "Sim" e um botão "Não" que foge do cursor ou do dedo. Quando a pessoa clica em "Sim", aparece a tela de sucesso com confete e, em seguida, o WhatsApp abre com a mensagem pronta.
+Página estática com um convite para jantar em formato de cartão de reserva. Tem um botão "Sim" e um botão "Não" que foge do cursor ou do dedo. Quando a pessoa clica em "Sim", aparece a tela de sucesso com confete e, em seguida, o WhatsApp abre com a mensagem pronta.
 
 HTML, CSS e JS puros, sem build step.
 
@@ -10,6 +10,7 @@ css/style.css     visual
 js/config.js      CONFIG: o único arquivo que precisa editar
 js/main.js        botão fugitivo, tela de sucesso, WhatsApp, CallMeBot
 js/confete.js     animação de confete
+assets/madero.jpg foto do restaurante (abre o Google Maps ao tocar)
 ```
 
 ## Configurar
@@ -35,8 +36,8 @@ Abra `http://localhost:3000`. Para testar no celular (o toque precisa ser valida
 
 ## Publicar no GitHub Pages
 
-1. Crie um repositório com nome neutro (ex: `pergunta`) e faça push da branch `main`.
+1. Crie um repositório com nome neutro (ex: `convite`) e faça push da branch `main`.
 2. No GitHub: **Settings → Pages → Build and deployment → Deploy from a branch**, branch `main`, pasta `/ (root)`.
-3. Em um ou dois minutos o site fica em `https://<usuario>.github.io/pergunta/`.
+3. Em um ou dois minutos o site fica em `https://<usuario>.github.io/convite/`.
 
 Para tirar do ar: **Settings → Pages → Unpublish**, ou apague o repositório.

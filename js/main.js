@@ -3,7 +3,7 @@ let tentativas = 0;
 function avisarNoZap() {
   const { telefone, apikey } = CONFIG.aviso;
   if (!telefone || !apikey) return;
-  const texto = "🎉 " + CONFIG.nome + " disse SIM pro convite do cinema! 🍿🐉\n" +
+  const texto = "🎉 " + CONFIG.nome + " disse SIM pro convite do jantar! 🍔🐉\n" +
                 "(Ela tentou clicar no Não " + tentativas + "x 😂)";
   new Image().src = "https://api.callmebot.com/whatsapp.php" +
     "?phone=" + telefone + "&text=" + encodeURIComponent(texto) + "&apikey=" + apikey;
@@ -12,20 +12,20 @@ function avisarNoZap() {
 /* nome e dragão nas duas telas */
 document.querySelectorAll("[data-nome]").forEach(el => el.textContent = CONFIG.nome);
 document.querySelectorAll("#convite .nome").forEach(el => el.textContent = CONFIG.nome + ",");
-document.title = CONFIG.nome + ", tenho uma pergunta 🍿";
+document.title = CONFIG.nome + ", tenho uma pergunta 🍔";
 const tpl = document.getElementById("tpl-dragao");
 document.querySelectorAll(".ingresso").forEach(el => el.prepend(tpl.content.cloneNode(true)));
 
 const zap = document.getElementById("zap");
 if (CONFIG.whatsapp) {
-  zap.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(CONFIG.mensagemZap);
+  zap.href = "https://api.whatsapp.com/send?phone=" + CONFIG.whatsapp + "&text=" + encodeURIComponent(CONFIG.mensagemZap);
 } else {
   zap.style.display = "none";
 }
 
-/* pipocas e dragõezinhos de fundo */
+/* hambúrgueres e dragõezinhos de fundo */
 const flutuantes = document.getElementById("flutuantes");
-const simbolos = ["🍿","🐉","🎬","🎞️","🐲","⭐","🍿"];
+const simbolos = ["🍔","🐉","🍟","🥤","🐲","⭐","🍔"];
 for (let i = 0; i < 12; i++) {
   const s = document.createElement("span");
   s.textContent = simbolos[i % simbolos.length];
@@ -34,6 +34,19 @@ for (let i = 0; i < 12; i++) {
   s.style.animationDuration = 10 + Math.random() * 10 + "s";
   s.style.animationDelay = -Math.random() * 18 + "s";
   flutuantes.appendChild(s);
+}
+
+/* lâmpadas do varal, seguindo as duas curvas do fio (y = curva quadrática de 4 a 20px) */
+const luzes = document.getElementById("luzes");
+for (let seg = 0; seg < 2; seg++) {
+  for (let k = 1; k <= 7; k++) {
+    const t = k / 8;
+    const l = document.createElement("i");
+    l.style.left = (seg + t) * 50 + "%";
+    l.style.top = (1 - t) ** 2 * 4 + 2 * t * (1 - t) * 36 + t * t * 4 + 1 + "px";
+    l.style.animationDelay = -Math.random() * 2.4 + "s";
+    luzes.appendChild(l);
+  }
 }
 
 /* ====== botão Não fugitivo ====== */

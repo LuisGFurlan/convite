@@ -1,6 +1,6 @@
 :root{
-  --vinho1:#2a0612; --vinho2:#4a0f22; --vinho3:#6b1530;
-  --veludo:#9f1239; --veludo-esc:#5f0a24;
+  --madeira1:#1c110a; --madeira2:#2e1c11; --ripa:#4a2e1b; --ripa-esc:#24160d;
+  --luz:#ffd27a; --luz-brilho:rgba(255,190,90,.65);
   --papel:#fff8ec; --tinta:#3a1f2b; --suave:#7a6470;
   --vermelho:#b4233c; --ouro:#e0a43a; --ouro-claro:#fde68a;
   --sim:#22c55e; --sim-esc:#15803d; --nao:#9ca3af; --nao-esc:#6b7280;
@@ -10,37 +10,35 @@ html,body{margin:0; height:100%}
 body{
   font-family:"Fredoka",system-ui,sans-serif; color:var(--tinta);
   background:
-    radial-gradient(ellipse 80% 55% at 50% -5%, rgba(253,230,138,.28), transparent 70%),
-    radial-gradient(ellipse at 50% 120%, var(--vinho3), transparent 60%),
-    linear-gradient(180deg, var(--vinho1), var(--vinho2));
-  min-height:100dvh; display:flex; align-items:center; justify-content:center;
-  padding:24px 16px; overflow:hidden; user-select:none; -webkit-user-select:none;
+    radial-gradient(ellipse 90% 50% at 50% -5%, rgba(255,196,110,.30), transparent 70%),
+    linear-gradient(180deg, transparent 40%, rgba(0,0,0,.5)),
+    repeating-linear-gradient(90deg, var(--ripa) 0 16px, var(--ripa-esc) 16px 22px),
+    var(--madeira1);
+  min-height:100dvh; display:flex; justify-content:center;
+  padding:80px 16px 24px; overflow-x:hidden; overflow-y:auto; user-select:none; -webkit-user-select:none;
   touch-action:manipulation;
 }
 
-/* cortinas de veludo */
-.cortina{
-  position:fixed; top:0; bottom:0; width:clamp(26px,11vw,150px); z-index:0; pointer-events:none;
-  background:
-    linear-gradient(90deg, rgba(0,0,0,.35), transparent 30%, transparent 70%, rgba(0,0,0,.35)),
-    repeating-linear-gradient(90deg, var(--veludo-esc) 0 4px, var(--veludo) 12px, var(--veludo-esc) 22px);
+/* varal de luzinhas */
+.luzes{position:fixed; top:0; left:0; right:0; height:48px; z-index:0; pointer-events:none}
+.luzes svg{position:absolute; inset:0; width:100%; height:40px}
+.luzes svg path{fill:none; stroke:#120a05; stroke-width:1.5; vector-effect:non-scaling-stroke}
+.luzes i{
+  position:absolute; width:9px; height:12px; margin-left:-4.5px; border-radius:50% 50% 45% 45%;
+  background:var(--luz); box-shadow:0 0 10px 3px var(--luz-brilho);
+  animation:brilho 2.4s ease-in-out infinite alternate;
 }
-.cortina.esq{left:0; border-bottom-right-radius:40% 8%; box-shadow:6px 0 20px rgba(0,0,0,.45)}
-.cortina.dir{right:0; border-bottom-left-radius:40% 8%; box-shadow:-6px 0 20px rgba(0,0,0,.45)}
-.bambinela{
-  position:fixed; top:0; left:0; right:0; height:22px; z-index:0; pointer-events:none;
-  background:radial-gradient(circle at 50% 0, var(--veludo) 16px, transparent 17px) 0 0/34px 22px repeat-x;
-  filter:drop-shadow(0 4px 6px rgba(0,0,0,.4));
-}
+.luzes i::before{content:""; position:absolute; top:-3px; left:2px; width:5px; height:4px; border-radius:1px; background:#120a05}
+@keyframes brilho{to{opacity:.55; box-shadow:0 0 5px 1px var(--luz-brilho)}}
 
-/* pipocas e dragõezinhos flutuando */
+/* hambúrgueres e dragõezinhos flutuando */
 .flutuantes{position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:0}
 .flutuantes span{position:absolute; bottom:-40px; opacity:.5; animation:subir linear infinite}
 @keyframes subir{to{transform:translateY(-115vh) rotate(30deg); opacity:0}}
 
 /* ===== ingresso ===== */
 .ingresso{
-  position:relative; z-index:1; width:100%; max-width:390px; margin-top:56px;
+  position:relative; z-index:1; width:100%; max-width:390px; margin:auto 0;
   filter:drop-shadow(0 18px 30px rgba(0,0,0,.5));
   animation:entra .7s cubic-bezier(.2,1.3,.4,1) both;
 }
@@ -52,19 +50,14 @@ body{
 }
 @keyframes quica{50%{transform:translateX(-50%) translateY(-7px)}}
 
-.parte{padding:0 22px; text-align:center}
-.principal{
-  border-radius:22px 22px 0 0; padding-top:20px; padding-bottom:20px;
-  background:
-    radial-gradient(circle at 0 100%, transparent 15px, var(--papel) 16px) left / 51% 100% no-repeat,
-    radial-gradient(circle at 100% 100%, transparent 15px, var(--papel) 16px) right / 51% 100% no-repeat;
+/* cartão de reserva com filete dourado */
+.ingresso::after{
+  content:""; position:absolute; inset:8px; border:1.5px solid #e6cfa8; border-radius:16px;
+  pointer-events:none;
 }
-.canhoto{
-  position:relative; border-radius:0 0 22px 22px; padding-top:18px; padding-bottom:18px;
-  background:
-    radial-gradient(circle at 0 0, transparent 15px, var(--papel) 16px) left / 51% 100% no-repeat,
-    radial-gradient(circle at 100% 0, transparent 15px, var(--papel) 16px) right / 51% 100% no-repeat;
-}
+.parte{padding:0 22px; text-align:center; background:var(--papel)}
+.principal{border-radius:22px 22px 0 0; padding-top:20px; padding-bottom:20px}
+.canhoto{position:relative; border-radius:0 0 22px 22px; padding-top:18px; padding-bottom:18px}
 .canhoto::before{
   content:""; position:absolute; top:0; left:24px; right:24px;
   border-top:2px dashed #e6cfa8;
@@ -89,13 +82,20 @@ h1{margin:16px 0 2px; font-size:clamp(22px,6.4vw,28px); font-weight:600; line-he
 h1 .nome{display:block; font-family:"Pacifico",cursive; font-weight:400; color:var(--vermelho); font-size:1.35em; line-height:1.3}
 
 .dados{margin:18px 0 0; display:grid; gap:12px; text-align:left}
-.dado{display:grid; grid-template-columns:34px 1fr; gap:10px; align-items:start}
+.dado{display:grid; grid-template-columns:34px minmax(0,1fr); gap:10px; align-items:start}
 .dado .ic{
   width:34px; height:34px; border-radius:50%; display:grid; place-items:center;
   background:#fdeccc; font-size:18px;
 }
 .dado small{display:block; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ouro)}
 .dado p{margin:1px 0 0; font-size:15.5px; line-height:1.35}
+
+.mapa{
+  display:block; margin-top:8px; border-radius:12px; overflow:hidden;
+  border:2px solid #e6cfa8; background:#fdeccc; color:var(--tinta); text-decoration:none;
+}
+.mapa img{display:block; width:100%; height:130px; object-fit:cover; object-position:center 35%}
+.mapa span{display:block; padding:6px 10px; font-size:13px; font-weight:500}
 
 .pergunta{margin:4px 0 14px; font-size:19px; font-weight:600}
 .botoes{display:flex; gap:12px; justify-content:center; align-items:center; min-height:60px}
@@ -134,3 +134,17 @@ button{
 }
 
 canvas#confete{position:fixed; inset:0; pointer-events:none; z-index:100}
+
+/* telas baixas (celular pequeno ou com as barras do navegador): compacta pra caber sem rolar */
+@media (max-height:700px){
+  body{padding-top:62px; padding-bottom:14px}
+  .dragao{width:92px; top:-58px}
+  .principal{padding-top:14px; padding-bottom:14px}
+  .letreiro{margin-top:16px}
+  h1{margin-top:10px}
+  .dados{margin-top:10px; gap:8px}
+  .mapa img{height:92px}
+  .canhoto{padding-top:12px; padding-bottom:12px}
+  .pergunta{margin-bottom:10px}
+  .codigo{margin-top:10px; height:18px}
+}

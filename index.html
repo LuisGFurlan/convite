@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Um convite pra você</title>
 <meta name="description" content="Tenho uma pergunta pra te fazer...">
-<meta name="theme-color" content="#3b0a1a">
+<meta name="theme-color" content="#1c110a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
@@ -13,9 +13,7 @@
 </head>
 <body>
 
-<div class="cortina esq"></div>
-<div class="cortina dir"></div>
-<div class="bambinela"></div>
+<div class="luzes" id="luzes"><svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 4 Q25 36 50 4 Q75 36 100 4"/></svg></div>
 <div class="flutuantes" id="flutuantes"></div>
 <canvas id="confete"></canvas>
 
@@ -40,13 +38,16 @@
     <path d="M54 54 Q60 60 66 54" fill="none" stroke="#1f2937" stroke-width="2.5" stroke-linecap="round"/>
     <circle cx="56" cy="49" r="1.2" fill="#059669"/>
     <circle cx="64" cy="49" r="1.2" fill="#059669"/>
-    <circle cx="50" cy="78" r="6" fill="#fff8e1" stroke="#e5c07b" stroke-width="1.5"/>
-    <circle cx="60" cy="74" r="7" fill="#fff8e1" stroke="#e5c07b" stroke-width="1.5"/>
-    <circle cx="70" cy="78" r="6" fill="#fff8e1" stroke="#e5c07b" stroke-width="1.5"/>
-    <circle cx="55" cy="81" r="5" fill="#fff8e1" stroke="#e5c07b" stroke-width="1.5"/>
-    <circle cx="65" cy="81" r="5" fill="#fff8e1" stroke="#e5c07b" stroke-width="1.5"/>
-    <path d="M44 82 L76 82 L71 108 L49 108 Z" fill="#fff" stroke="#b91c1c" stroke-width="2.5" stroke-linejoin="round"/>
-    <path d="M52 82 L54 108 M60 82 L60 108 M68 82 L66 108" stroke="#ef4444" stroke-width="4"/>
+    <path d="M44 99 L76 99 Q77 107 70 107 L50 107 Q43 107 44 99 Z" fill="#f0b35a" stroke="#b45309" stroke-width="2.5" stroke-linejoin="round"/>
+    <rect x="42" y="91" width="36" height="9" rx="4.5" fill="#7c3f1d" stroke="#4a2511" stroke-width="2.5"/>
+    <path d="M43 90 L77 90 L74 96 L69 91.5 L63 97 L57 91.5 L51 96 L47 91.5 Z" fill="#fcd34d" stroke="#d97706" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M41 89 Q45 84 49 88 Q53 84 57 88 Q61 84 65 88 Q69 84 73 88 Q77 84 79 89 Z" fill="#4ade80" stroke="#15803d" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M43 87 Q43 72 60 72 Q77 72 77 87 Z" fill="#f0b35a" stroke="#b45309" stroke-width="2.5" stroke-linejoin="round"/>
+    <ellipse cx="53" cy="78" rx="1.6" ry="1" fill="#fff8e1"/>
+    <ellipse cx="60" cy="76" rx="1.6" ry="1" fill="#fff8e1"/>
+    <ellipse cx="67" cy="78" rx="1.6" ry="1" fill="#fff8e1"/>
+    <ellipse cx="57" cy="81" rx="1.6" ry="1" fill="#fff8e1"/>
+    <ellipse cx="64" cy="81" rx="1.6" ry="1" fill="#fff8e1"/>
     <ellipse cx="44" cy="92" rx="5" ry="4" fill="#6ee7b7" stroke="#059669" stroke-width="2"/>
     <ellipse cx="76" cy="92" rx="5" ry="4" fill="#6ee7b7" stroke="#059669" stroke-width="2"/>
   </svg>
@@ -55,38 +56,42 @@
 <!-- convite -->
 <main class="ingresso" id="convite">
   <div class="parte principal">
-    <div class="letreiro">🎟️ Sessão especial</div>
+    <div class="letreiro">🍽️ Reserva especial</div>
     <h1><span class="nome" data-nome></span>quer sair comigo?</h1>
 
     <section class="dados">
-      <div class="dado"><span class="ic">🛍️</span><div><small>Motivo</small><p>Quero conhecer o Shopping Estação, porque você me deixou curioso.</p></div></div>
-      <div class="dado"><span class="ic">🍿</span><div><small>Objetivo</small><p>Ver o cinema de lá e assistir o novo filme dos Carros 🏎️</p></div></div>
-      <div class="dado"><span class="ic">📅</span><div><small>Data</small><p>Quando ficar melhor pra você.</p></div></div>
+      <div class="dado"><span class="ic">📍</span><div><small>Onde</small><p>Madero &amp; Jeronimo Track Glória</p>
+        <a class="mapa" href="https://www.google.com/maps/search/?api=1&amp;query=Madero+%26+Jeronimo+Track+Gl%C3%B3ria%2C+R.+Cambori%C3%BA%2C+31%2C+Joinville" target="_blank" rel="noopener">
+          <img src="assets/madero.jpg" alt="Fachada do Madero &amp; Jeronimo Track Glória" draggable="false">
+          <span>R. Camboriú, 31 · Glória ↗</span>
+        </a>
+      </div></div>
+      <div class="dado"><span class="ic">📅</span><div><small>Quando</small><p>Sábado, 17/10, entre 19h30 e 20h</p></div></div>
     </section>
   </div>
 
   <div class="parte canhoto">
     <p class="pergunta">E aí, topa?</p>
     <div class="botoes">
-      <button id="sim" type="button">Sim 🍿</button>
+      <button id="sim" type="button">Sim 🍔</button>
       <button id="nao" type="button">Não</button>
     </div>
     <div class="codigo"></div>
-    <div class="serie">Nº 0001 · ADMITE 2</div>
+    <div class="serie">MESA PARA 2 · Nº 0001</div>
   </div>
 </main>
 
 <!-- sucesso -->
 <main class="ingresso" id="sucesso">
   <div class="parte principal">
-    <div class="carimbo">CONFIRMADO</div>
-    <h1>Ebaaa! 🎉</h1>
-    <p>Sabia que você ia topar, <span data-nome></span> 😄<br>Agora é só escolher o dia!</p>
+    <div class="carimbo">RESERVADO</div>
+    <h1>Ebaaa!</h1>
+    <p>Sabia que você ia topar, <span data-nome></span><br>Te vejo sábado à noite!</p>
   </div>
   <div class="parte canhoto">
     <a class="zap" id="zap" target="_blank" rel="noopener">Me manda no WhatsApp 💬</a>
     <div class="codigo"></div>
-    <div class="serie">Nº 0001 · ADMITE 2</div>
+    <div class="serie">MESA PARA 2 · Nº 0001</div>
   </div>
 </main>
 
